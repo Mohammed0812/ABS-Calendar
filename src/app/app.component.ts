@@ -28,6 +28,7 @@ export class AppComponent {
   title:any;
   eventTitle:any;
   event:any = false;
+  list:any = false;
   eventList:any = [];
   constructor(
     private api: AppService
@@ -39,7 +40,7 @@ export class AppComponent {
   getValue(event:any) {
     let value = event.target.innerHTML;
     console.log(value);
-    this.event = true;
+    
   }
   submit() {
     //  this.api.post('http://localhost/calendar/save.php', {
@@ -50,7 +51,8 @@ export class AppComponent {
     //    console.error('Error is', x);
     //  });
     //  this.load();
-    this.eventList.push({name:this.eventTitle});
+    
+    this.eventList.push({name:this.eventTitle,Dates:this.dates});
   }
    async load() {
     this.api.get('http://localhost/calendar/view.php').then((x) => {
@@ -58,9 +60,14 @@ export class AppComponent {
     }).catch((x) => {
       console.error('Error is', x);
     });
+    this.event = false;
   }
-  
-  
+  addEvent() {
+    this.event = true;
+  }
+  lists() {
+    this.list = true;
+  }
 
   
 }

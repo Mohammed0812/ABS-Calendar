@@ -15,18 +15,6 @@
         <h2>March, 2021</h2>
         <p>{{currentDate}}</p>
     </div>
-    <ng-container *ngIf='event'>
-        <div class="event">
-            <label>Title</label>
-            <input type="text" placeholder="title" [(ngModel)]="eventTitle">
-            <br><br>
-            <label>Date</label>
-            <input type="date" [(ngModel)]="dates">
-            <br><br>
-            <button (click)='submit()'>Submit</button>
-            <button (click)='load()'>Refresh</button>
-        </div>
-    </ng-container>
     <br>
     <table (click)="getValue($event)">
         <tr>
@@ -85,9 +73,28 @@
         </tr>
     </table>
     <br><br>
+    <ng-container *ngIf='event'>
+        <div class="event">
+            <label>Title</label>
+            <input type="text" placeholder="title" [(ngModel)]="eventTitle">
+            <br><br>
+            <label>Date</label>
+            <input type="date" [(ngModel)]="dates">
+            <br><br>
+            <button (click)='submit()'>Submit</button>
+            <button (click)='load()'>Refresh</button>
+        </div>
+    </ng-container>
     <div class="eventbtn">
-        <button>Add Event</button>
-        <button routerLink="event">Event Lists</button>
+        <button (click)='addEvent()'>Add Event</button>
+        <button (click)='lists()'>Event Lists</button>
     </div>
+    <ng-container *ngIf="list">
+        <div class="list">
+            <ul *ngFor='let a of eventList'>
+                <li>{{a.Dates}} - {{a.name}}</li>
+            </ul>
+        </div>
+    </ng-container>
 </div>
 <router-outlet></router-outlet>
