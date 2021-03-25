@@ -1,0 +1,164 @@
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+  }
+  
+  table,th,td {
+    margin-left: 35%;
+    text-align: center;
+  }
+  table {
+    width: 400px;
+    height: 400px;
+    table-layout: fixed;
+  }
+  th {
+    color: rgb(12, 160, 7);
+    border-bottom: 1px solid gainsboro;
+    text-transform: uppercase;
+  }
+  th:nth-child(1) {
+    color: red;
+    font-size: 25px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  td {
+    font-weight: bold;
+  }
+  td:nth-child(1) {
+    color: red;
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  td:hover {
+    background-color: rgb(22, 241, 22);
+    border: none
+  }
+
+/* h1{
+    background-color: blue;
+    color: white;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0px;
+    padding: 5px;
+    text-transform: uppercase;
+    text-shadow: 0 4px 1px black;
+}*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    position: absolute;
+    display: none;
+    background-color: #f9f9f9;
+    box-shadow: 10px 5px 10px black;
+    margin-left: 20px;
+}
+.dropdown-content a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    padding: 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-transform: uppercase;
+}
+.dropdown-content a:hover {
+    background-color: red;
+    color: white;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+} 
+
+h2 {
+  color: rgb(107, 58, 241);
+  text-transform: uppercase;
+  font-family: 'Times New Roman', Times, serif;
+  padding: 3px;
+  
+  
+  font-size: 30px;
+}
+p {
+  padding-top: 5px;
+  padding-left: 18px;
+  font-size: 20px;
+}
+.main {
+  margin-left: 45%;
+}
+.dropbtn {
+  float: right;
+  background-color: rgb(7, 196, 7);
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bolder;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  cursor: pointer;
+}
+.dropbtn:hover {
+  background-color: green;
+}
+a {
+  text-decoration: none;
+}
+
+.event {
+  border: 1px solid white;
+  background-color: yellow;
+  width: 20%;
+  height: 200px;
+  text-align: center;
+  padding-top: 10px;
+  margin-left: 200px;
+}
+button {
+  background-color: red;
+  color: white;
+  outline: none;
+  cursor: pointer;
+}
+li{
+  list-style: none;
+}
+.b1{
+  position: relative;
+  left: 150px;
+  margin-top: 10px;
+  float: left;
+  width: 35px;
+  font-size: 25px;
+  background-color: rgb(107, 58, 241);
+  border-radius: 50%;
+  outline: none;
+  
+}
+.b2{
+  position: relative;
+  right: 130px;
+  margin-top: 10px;
+  width: 35px;
+  font-size: 25px;
+  background-color: rgb(107, 58, 241);
+  border-radius: 50%;
+  outline: none; 
+  float: right;
+  
+}
+.eventbtn {
+  margin-left: 300px;
+}
+.eventbtn button {
+  width: 100px;
+  padding: 5px;
+  background-color: blue;
+  margin-left: 20px;
+}
