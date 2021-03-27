@@ -1,100 +1,94 @@
 <!-- <h1>ABS CALENDAR</h1> -->
 <div class="body">
-    <div class="dropdown" style="float: left;">
-        <button class="dropbtn">Months</button>
-        <div class="dropdown-content">
-            <a routerLink="january">January</a>
-            <a routerLink="february">February</a>
-            <a routerLink="april">April</a>
-            <a routerLink="may">May</a>
-        </div>
-    </div>
-    <button class="b1" routerLink="february">&#8249;</button>
-    <button class="b2" routerLink="april">&#8250;</button>
     <div class="main">
         <h2>March, 2021</h2>
         <p>{{currentDate}}</p>
     </div>
-    <br>
-    <table (click)="getValue($event)">
-        <tr>
-            <th>Sun</th>
-            <th>Mon</th>
-            <th>Tue</th>
-            <th>Wed</th>
-            <th>Thu</th>
-            <th>Fri</th>
-            <th>Sat</th>
-        </tr>
-        <tr>
-            <td style="opacity: 0.4;">28</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>8</td>
-            <td>9</td>
-            <td>10</td>
-            <td>11</td>
-            <td>12</td>
-            <td>13</td>
-        </tr>
-        <tr>
-            <td>14</td>
-            <td>15</td>
-            <td>16</td>
-            <td>17</td>
-            <td>18</td>
-            <td>19</td>
-            <td>20</td>
-        </tr>
-        <tr>
-            <td>21</td>
-            <td>22</td>
-            <td>23</td>
-            <td>24</td>
-            <td>25</td>
-            <td>26</td>
-            <td>27</td>
-        </tr>
-        <tr>
-            <td>28</td>
-            <td>29</td>
-            <td>30</td>
-            <td>31</td>
-            <td style="opacity: 0.4;">1</td>
-            <td style="opacity: 0.4;">2</td>
-            <td style="opacity: 0.4;">3</td>
-        </tr>
-    </table>
-    <br><br>
     <ng-container *ngIf='event'>
         <div class="event">
             <label>Title</label>
             <input type="text" placeholder="title" [(ngModel)]="eventTitle">
             <br><br>
             <label>Date</label>
-            <input type="date" [(ngModel)]="dates">
+            <input type="text" [(ngModel)]="dates" [value] = 'dates' readonly>
             <br><br>
-            <button (click)='submit()'>Submit</button>
-            <button (click)='load()'>Refresh</button>
+            <button (click)='submit();load()'>Submit</button>
+            <button (click)='cancel()'>Cancel</button>
         </div>
     </ng-container>
-    <div class="eventbtn">
-        <button (click)='addEvent()'>Add Event</button>
-        <button (click)='lists()'>Event Lists</button>
+    <div class="myTable">
+        <table (click)="getValue($event)">
+            <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+            <tr>
+                <td id="unUse">28</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>13</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>15</td>
+                <td>16</td>
+                <td>17</td>
+                <td>18</td>
+                <td>19</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>21</td>
+                <td>22</td>
+                <td>23</td>
+                <td>24</td>
+                <td>25</td>
+                <td>26</td>
+                <td>27</td>
+            </tr>
+            <tr>
+                <td>28</td>
+                <td>29</td>
+                <td>30</td>
+                <td>31</td>
+                <td id="unUse">1</td>
+                <td id="unUse">2</td>
+                <td id="unUse">3</td>
+            </tr>
+        </table>
+
+        <br><br>
+        <!-- <div class="eventbtn">
+            <button (click)='addEvent()'>Add Event</button>
+            <button (click)='lists()'>Event Lists</button>
+        </div> -->
+        <ng-container *ngIf = 'list'>
+            <div class="list">
+                <ul *ngFor='let a of eventList;let i = index'>
+                    <p>{{a.dates}}</p>
+                    <li>{{a.title}} <button (click) = 'delete(a)' class="delete">Delete</button></li>
+                </ul>
+            </div>
+        </ng-container>
+
     </div>
-    <ng-container *ngIf="list">
-        <div class="list">
-            <ul *ngFor='let a of eventList'>
-                <li>{{a.Dates}} - {{a.name}}</li>
-            </ul>
-        </div>
-    </ng-container>
 </div>
+
 <router-outlet></router-outlet>

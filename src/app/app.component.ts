@@ -6,7 +6,7 @@ import { AppService } from './abs.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  date:any = new Date();
+  date: any = new Date();
   months: any = [
     "January",
     "February",
@@ -22,52 +22,49 @@ export class AppComponent {
     "December",
   ];
   currentMonth: any = this.months[this.date.getMonth()]; //get current month
-  currentYear:any = this.date.getFullYear(); //get current year
-  currentDate:any = new Date().toDateString(); //get current date
-  dates:any;
-  title:any;
-  eventTitle:any;
-  event:any = false;
-  list:any = false;
-  eventList:any = [];
+  currentYear: any = this.date.getFullYear(); //get current year
+  currentDate: any = new Date().toDateString(); //get current date
+  
+  title: any;
+  eventTitle: any;
+  event: any = false;
+  list: any = true;
+  saveEventList:any = [];
+  eventList: any = [];
   constructor(
     private api: AppService
   ) {
-    // this.load();
-    // console.log('Request sent');
-
+    this.load();
   }
-  getValue(event:any) {
+  dates: any = new Date().getDate() + '/' + (new Date().getMonth() + 1) + '/' + new Date().getFullYear();
+  getValue(event: any) {
     let value = event.target.innerHTML;
     console.log(value);
-    
+    this.event = true;
+    console.log(this.dates);
   }
+  
   submit() {
-    //  this.api.post('http://localhost/calendar/save.php', {
-    //    name: this.eventTitle
-    //  }).then((x) => {
-    //    console.log('event Saved', x);
-    //  }).catch((x) => {
-    //    console.error('Error is', x);
-    //  });
-    //  this.load();
-    
-    this.eventList.push({name:this.eventTitle,Dates:this.dates});
-  }
-   async load() {
-    this.api.get('http://localhost/calendar/view.php').then((x) => {
-      console.log('eventloaded', x);
-    }).catch((x) => {
-      console.error('Error is', x);
+    this.api.post('http://localhost/calendar/save.php', {
+    dates: this.dates,
+    title: this.eventTitle
     });
+    this.load();
+    // this.dates = '';
+    // this.eventTitle = '';
+  }
+  async load() {
+      let result:any = await this.api.get('http://localhost/calendar/view.php');
+      this.saveEventList = result.data;
+    
+      this.eventList = this.saveEventList;
+      
+  }
+  cancel() {
     this.event = false;
   }
-  addEvent() {
-    this.event = true;
+  delete(i: any) {
+    this.api.post('http://localhost/calendar/delete.php', i);
+    this.load();
   }
-  lists() {
-    this.list = true;
-  }
-
-  
 }
