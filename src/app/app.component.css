@@ -37,7 +37,9 @@ td:hover {
   background-color: rgb(22, 241, 22);
   border: none;
 }
-
+td:active {
+  background-color: red;
+}
 h2{
   color: rgb(111, 38, 228);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -79,7 +81,7 @@ p {
 .list {
   background: linear-gradient(rgb(241, 177, 57),rgb(238, 221, 184)  );
   color: black;
-  margin-top: 15%;
+  margin-top: 5%;
   width: 30%;
   overflow: scroll;
   height: 400px;
