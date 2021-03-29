@@ -10,7 +10,7 @@
             <input type="text" placeholder="title" [(ngModel)]="eventTitle">
             <br><br>
             <label>Date</label>
-            <input type="text" [(ngModel)]="dates" [value] = 'dates' readonly>
+            <input type="text" [(ngModel)]="dates" [value] = "eventList[dates]" disabled>
             <br><br>
             <button (click)='submit();load()'>Submit</button>
             <button (click)='cancel()'>Cancel</button>
@@ -28,7 +28,7 @@
                 <th>Sat</th>
             </tr>
             <tr>
-                <td id="unUse">28</td>
+                <td></td>
                 <td>1</td>
                 <td>2</td>
                 <td>3</td>
@@ -68,9 +68,9 @@
                 <td>29</td>
                 <td>30</td>
                 <td>31</td>
-                <td id="unUse">1</td>
-                <td id="unUse">2</td>
-                <td id="unUse">3</td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
         </table>
 

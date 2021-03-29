@@ -24,41 +24,48 @@ export class AppComponent {
   currentMonth: any = this.months[this.date.getMonth()]; //get current month
   currentYear: any = this.date.getFullYear(); //get current year
   currentDate: any = new Date().toDateString(); //get current date
-  
+
   title: any;
   eventTitle: any;
-  event: any = false;
-  list: any = true;
-  saveEventList:any = [];
+  event: any = false; //hide the event class
+  list: any = true;  //show the list class
+  saveEventList: any = [];
   eventList: any = [];
   constructor(
     private api: AppService
   ) {
     this.load();
   }
-  dates: any = new Date().getDate() + '/' + (new Date().getMonth() + 1) + '/' + new Date().getFullYear();
+  dates:any;
+  days:any = new Date().getDate(); //get current day
+  
   getValue(event: any) {
+    //get the table cell value
     let value = event.target.innerHTML;
     console.log(value);
     this.event = true;
+    const nDate = new Date();//get current date
+
+    const year = nDate.getFullYear(); //get current year
+    const month = nDate.getMonth()+1; //get current month
+
+    this.dates = `${year}-${month}-${value}`; //assign the date
     console.log(this.dates);
   }
-  
+
   submit() {
     this.api.post('http://localhost/calendar/save.php', {
-    dates: this.dates,
-    title: this.eventTitle
+      dates: this.dates,
+      title: this.eventTitle
     });
     this.load();
     // this.dates = '';
     // this.eventTitle = '';
   }
   async load() {
-      let result:any = await this.api.get('http://localhost/calendar/view.php');
-      this.saveEventList = result.data;
-    
-      this.eventList = this.saveEventList;
-      
+    let result: any = await this.api.get('http://localhost/calendar/view.php');
+    this.saveEventList = result.data;
+    this.eventList = this.saveEventList;
   }
   cancel() {
     this.event = false;
@@ -67,4 +74,5 @@ export class AppComponent {
     this.api.post('http://localhost/calendar/delete.php', i);
     this.load();
   }
+  
 }
