@@ -17,7 +17,7 @@
         </div>
     </ng-container>
     <div class="myTable">
-        <table (click)="getValue($event)">
+        <table (click)="getValue($event)" [ngStyle]="{'background-color':active}">
             <tr>
                 <th>Sun</th>
                 <th>Mon</th>

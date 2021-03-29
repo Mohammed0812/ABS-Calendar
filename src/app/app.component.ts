@@ -37,12 +37,12 @@ export class AppComponent {
     this.load();
   }
   dates: any;
-  
+  active:any;
 
   getValue(event: any) {
     //get the table cell value
     let value = event.target.innerHTML;
-
+    
     this.event = true;
     const nDate = new Date();//get current date
 
@@ -51,8 +51,12 @@ export class AppComponent {
 
     this.dates = `${year}-${month}-${value}`; //assign the date
     console.log(this.dates);
-    let result = this.eventList.filter((e:any) => e. ndates===this.dates);
-      console.log(result);
+
+    if(this.dates===value){
+    this.active= "yellow";
+    }
+    let result = this.eventList.filter((e: any) => e.ndates === this.dates);
+    console.log(result);
   }
 
   submit() {
@@ -71,12 +75,12 @@ export class AppComponent {
   }
   cancel() {
     this.event = false;
-    let obj = this.eventList.reduce((a:any, e:any) => {
+    let obj = this.eventList.reduce((a: any, e: any) => {
       a[e.dates] = ++a[e.dates] || 0;
       return a;
     }, {});
     console.log(obj);
-    console.log(this.eventList.filter((e:any) => obj[e.dates]));
+    console.log(this.eventList.filter((e: any) => obj[e.dates]));
   }
   delete(i: any) {
     this.api.post('http://localhost/calendar/delete.php', i);
