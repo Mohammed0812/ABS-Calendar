@@ -37,7 +37,7 @@ export class AppComponent {
     this.load();
   }
   dates:any;
-  days:any = new Date().getDate(); //get current day
+
   
   getValue(event: any) {
     //get the table cell value
@@ -69,6 +69,12 @@ export class AppComponent {
   }
   cancel() {
     this.event = false;
+    let lookup = this.eventList.reduce((a:any, e:any) => {
+      a[e.dates] = ++a[e.dates] || 0;
+      return a;
+    }, {});
+    console.log(lookup);
+    console.log(this.eventList.filter((e:any) => lookup[e.dates]));
   }
   delete(i: any) {
     this.api.post('http://localhost/calendar/delete.php', i);
