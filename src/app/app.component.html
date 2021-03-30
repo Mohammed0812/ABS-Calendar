@@ -17,7 +17,7 @@
         </div>
     </ng-container>
     <div class="myTable">
-        <table (click)="getValue($event)" [ngStyle]="{'background-color':active}">
+        <table (click)="getValue($event)">
             <tr>
                 <th>Sun</th>
                 <th>Mon</th>
@@ -81,7 +81,7 @@
         </div> -->
         <ng-container *ngIf = 'list'>
             <div class="list">
-                <ul *ngFor='let a of eventList;let i = index'>
+                <ul *ngFor='let a of eventList;let i = index' [ngStyle]="{'background-color':active(i)}">
                     <p>{{a.dates}}</p>
                     <li>{{a.title}} <button (click) = 'delete(a)' class="delete">Delete</button></li>
                 </ul>

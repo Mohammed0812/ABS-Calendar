@@ -31,14 +31,19 @@ export class AppComponent {
   list: any = true;  //show the list class
   saveEventList: any = [];
   eventList: any = [];
+
   constructor(
     private api: AppService
   ) {
     this.load();
   }
   dates: any;
-  active:any;
-
+  active(i:any) {
+    if(i === this.eventList.dates) {
+      let result = this.eventList.filter((e: any) => e.dates === this.dates);
+      console.log(result);
+    }
+  }
   getValue(event: any) {
     //get the table cell value
     let value = event.target.innerHTML;
@@ -51,12 +56,7 @@ export class AppComponent {
 
     this.dates = `${year}-${month}-${value}`; //assign the date
     console.log(this.dates);
-
-    if(this.dates===value){
-    this.active= "yellow";
-    }
-    let result = this.eventList.filter((e: any) => e.ndates === this.dates);
-    console.log(result);
+    
   }
 
   submit() {
@@ -75,12 +75,13 @@ export class AppComponent {
   }
   cancel() {
     this.event = false;
-    let obj = this.eventList.reduce((a: any, e: any) => {
-      a[e.dates] = ++a[e.dates] || 0;
+    let obj: any = this.eventList.filter((o: any) => o.dates);
+    console.log(obj);
+    let result = obj.reduce((a: any, b: any) => {
+      a[b.dates] = (a[b.dates] || 0) + b.title;
       return a;
     }, {});
-    console.log(obj);
-    console.log(this.eventList.filter((e: any) => obj[e.dates]));
+    console.log(result);
   }
   delete(i: any) {
     this.api.post('http://localhost/calendar/delete.php', i);
