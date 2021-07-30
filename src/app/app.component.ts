@@ -53,10 +53,8 @@ export class AppComponent {
 
     const year = nDate.getFullYear(); //get current year
     const month = nDate.getMonth() + 1; //get current month
-
     this.dates = `${year}-${month}-${value}`; //assign the date
     console.log(this.dates);
-    
   }
 
   submit() {
